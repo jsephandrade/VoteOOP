@@ -6,16 +6,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   // SECTION 1: Register as Voter
   const btnRegisterVoter = document.getElementById("btn-register-voter");
-  const vrName       = document.getElementById("vr-name");
-  const vrNid        = document.getElementById("vr-nid");
-  const vrDob        = document.getElementById("vr-dob");
+  const vrNameInput      = document.getElementById("vr-name");
+  const vrNidInput       = document.getElementById("vr-nid");
+  const vrDobInput        = document.getElementById("vr-dob");
   const vrResult     = document.getElementById("vr-result");
 
   btnRegisterVoter.addEventListener("click", async () => {
     vrResult.textContent = "";
-    const name = vrName.value.trim();
-    const nationalId = vrNid.value.trim();
-    const dob = vrDob.value; // YYYY-MM-DD
+    const name = vrNameInput.value.trim();
+    const nationalId = vrNidInput.value.trim();
+    const dob = vrDobInput.value; // YYYY-MM-DD
     if (!name || !nationalId || !dob) {
       vrResult.textContent = "All fields are required.";
       vrResult.className = "text-red-600";
