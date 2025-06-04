@@ -1,0 +1,29 @@
+{
+  "name": "voteoop-online-voting-system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "The Online Voting System is a secure, object-oriented application that allows registered voters to cast votes in one or more elections, ensures vote integrity, and produces reliable, tamper-evident results. The purpose of this project is to simulate a real-world electronic voting platform where:",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsephandrade/VoteOOP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jsephandrade/VoteOOP/issues"
+  },
+  "homepage": "https://github.com/jsephandrade/VoteOOP#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0"
+  }
+}

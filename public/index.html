@@ -1,0 +1,143 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-50">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Voting System UI</title>
+    <!-- Tailwind CDN (for demo purposes) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-full flex flex-col items-center p-4">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">🗳️ Online Voting Demo</h1>
+
+    <!-- SECTION 1: Register as Voter -->
+    <section
+      id="voter-registration"
+      class="w-full max-w-md bg-white p-6 rounded shadow mb-6"
+    >
+      <h2 class="text-xl font-semibold mb-2">1. Register as Voter</h2>
+      <label class="block mb-1">Full Name</label>
+      <input
+        id="vr-name"
+        type="text"
+        class="w-full border p-2 mb-2 rounded"
+        placeholder="John Doe"
+      />
+      <label class="block mb-1">National ID</label>
+      <input
+        id="vr-nid"
+        type="text"
+        class="w-full border p-2 mb-2 rounded"
+        placeholder="ABCD1234"
+      />
+      <label class="block mb-1">Date of Birth</label>
+      <input
+        id="vr-dob"
+        type="date"
+        class="w-full border p-2 mb-4 rounded"
+        placeholder="YYYY-MM-DD"
+        title="Enter your date of birth"
+      />
+      <button
+        id="btn-register-voter"
+        class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+      >
+        Register
+      </button>
+      <p id="vr-result" class="mt-2 text-sm text-green-700"></p>
+    </section>
+
+    <!-- SECTION 2: List Ongoing Elections -->
+    <section
+      id="election-list"
+      class="w-full max-w-md bg-white p-6 rounded shadow mb-6"
+    >
+      <h2 class="text-xl font-semibold mb-2">2. Ongoing Elections</h2>
+      <button
+        id="btn-load-elections"
+        class="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700 mb-4"
+      >
+        Load Elections
+      </button>
+      <ul id="elections-container" class="space-y-2 text-gray-700"></ul>
+    </section>
+
+    <!-- SECTION 3: Enroll & Vote -->
+    <section
+      id="vote-section"
+      class="w-full max-w-md bg-white p-6 rounded shadow mb-6 hidden"
+    >
+      <h2 class="text-xl font-semibold mb-2">3. Enroll & Vote</h2>
+      <label class="block mb-1">Enter Your Voter ID</label>
+      <input
+        id="voter-id-input"
+        type="text"
+        class="w-full border p-2 mb-4 rounded"
+        placeholder="Paste your Voter ID here"
+      />
+      <button
+        id="btn-fetch-election-details"
+        class="w-full bg-yellow-600 text-white p-2 rounded hover:bg-yellow-700 mb-4"
+      >
+        Fetch Election Details
+      </button>
+
+      <div id="election-details" class="hidden">
+        <p class="text-gray-800 mb-2">
+          <span id="ed-name" class="font-medium"></span>
+        </p>
+        <p class="text-gray-600 mb-2">Election ID: <span id="ed-id"></span></p>
+        <p class="text-gray-600 mb-4">Vote for a Candidate:</p>
+        <ul id="candidate-list" class="space-y-2 mb-4"></ul>
+
+        <button
+          id="btn-cast-vote"
+          class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700"
+        >
+          Cast Vote
+        </button>
+        <p id="vote-result" class="mt-2 text-sm text-red-600"></p>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Admin Tools (Close & Results) -->
+    <section
+      id="admin-section"
+      class="w-full max-w-md bg-white p-6 rounded shadow mb-6"
+    >
+      <h2 class="text-xl font-semibold mb-2">
+        4. Admin: Close Election & View Results
+      </h2>
+      <label class="block mb-1">Admin Password</label>
+      <input
+        id="admin-password"
+        type="password"
+        class="w-full border p-2 mb-2 rounded"
+        placeholder="admin123"
+      />
+      <label class="block mb-1">Election ID to Close</label>
+      <input
+        id="admin-election-id"
+        type="text"
+        class="w-full border p-2 mb-2 rounded"
+        placeholder="e2025"
+      />
+      <button
+        id="btn-close-election"
+        class="w-full bg-red-600 text-white p-2 rounded hover:bg-red-700 mb-4"
+      >
+        Close Election
+      </button>
+      <button
+        id="btn-view-results"
+        class="w-full bg-purple-600 text-white p-2 rounded hover:bg-purple-700"
+      >
+        View Results
+      </button>
+      <ul id="results-container" class="mt-4 space-y-2 text-gray-800"></ul>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
