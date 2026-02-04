@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Voter {
+  id           String   @id @default(cuid())
+  name         String
+  nationalId   String   @unique
+  dateOfBirth  DateTime
+  createdAt    DateTime @default(now())
+
+  registrations ElectionRegistration[]
+  ballots       Ballot[]
+}
+
+model Candidate {
+  id        String   @id @default(cuid())
+  name      String
+  party     String
+  createdAt DateTime @default(now())
+
+  elections ElectionCandidate[]
+  ballots   Ballot[]
+
+  @@unique([name, party], name: "candidate_name_party")
+}
+
+model Election {
+  id        String   @id
+  name      String
+  startDate DateTime
+  endDate   DateTime
+  closed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  candidates    ElectionCandidate[]
+  registrations ElectionRegistration[]
+  ballots       Ballot[]
+}
+
+model ElectionCandidate {
+  electionId  String
+  candidateId String
+
+  election  Election  @relation(fields: [electionId], references: [id])
+  candidate Candidate @relation(fields: [candidateId], references: [id])
+
+  @@id([electionId, candidateId])
+}
+
+model ElectionRegistration {
+  electionId String
+  voterId    String
+  createdAt  DateTime @default(now())
+
+  election Election @relation(fields: [electionId], references: [id])
+  voter    Voter    @relation(fields: [voterId], references: [id])
+
+  @@id([electionId, voterId])
+}
+
+model Ballot {
+  id          String   @id @default(cuid())
+  electionId  String
+  voterId     String
+  candidateId String
+  createdAt   DateTime @default(now())
+
+  election  Election  @relation(fields: [electionId], references: [id])
+  voter     Voter     @relation(fields: [voterId], references: [id])
+  candidate Candidate @relation(fields: [candidateId], references: [id])
+
+  @@unique([electionId, voterId])
+  @@index([electionId])
+  @@index([candidateId])
+}

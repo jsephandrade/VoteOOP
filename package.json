@@ -9,7 +9,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "prisma": "node scripts/prisma-run.js",
+    "migrate": "node scripts/prisma-run.js migrate dev",
+    "generate": "node scripts/prisma-run.js generate"
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,16 @@
   },
   "homepage": "https://github.com/jsephandrade/VoteOOP#readme",
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "body-parser": "^2.2.0",
-    "express": "^5.1.0"
+    "dotenv": "^16.4.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "prisma": "^5.13.0"
   }
 }
